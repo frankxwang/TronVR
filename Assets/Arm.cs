@@ -16,5 +16,6 @@ public class Arm : Photon.MonoBehaviour {
 	}
 	void OnConnectedToMaster(){
 		PhotonNetwork.CreateRoom ("Controller");
+		print ("Connected");
 	}
 }

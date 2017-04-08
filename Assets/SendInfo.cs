@@ -8,7 +8,12 @@ public class SendInfo : Photon.MonoBehaviour {
 		if (stream.isWriting) {
 			stream.SendNext (AdaptGyro(Input.gyro.attitude));
 			stream.SendNext (Input.acceleration.magnitude);
+			print ("sent");
 		}
+	}
+	static Quaternion AdaptGyro(Quaternion q)
+	{
+		return new Quaternion(q.x, q.y, -q.z, -q.w);
 	}
 	void Start()
 	{
@@ -16,9 +21,6 @@ public class SendInfo : Photon.MonoBehaviour {
 	}
 	void OnConnectedToMaster(){
 		PhotonNetwork.JoinRoom ("Controller");
-	}
-	private static Quaternion AdaptGyro(Quaternion q)
-	{
-		return new Quaternion(q.x, q.y, -q.z, -q.w);
+		print ("connected");
 	}
 }
